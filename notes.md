@@ -26,3 +26,9 @@ $files = Finder::create()
         ->name('*.txt')
         ->contains('{example-key}');
 ```
+
+## 3
+
+[varDumper](http://symfony.com/doc/current/components/var_dumper.html) provides better output when dumping variables to the page.
+
+formats the `var_dump` in a more readable way.
