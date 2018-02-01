@@ -32,3 +32,36 @@ $files = Finder::create()
 [varDumper](http://symfony.com/doc/current/components/var_dumper.html) provides better output when dumping variables to the page.
 
 formats the `var_dump` in a more readable way.
+
+## 4
+
+"The [EventDispacher](http://symfony.com/doc/current/components/event_dispatcher.html) component provides tools that allow your application components to communicate with each other by dispatching events and listening to them."
+
+The event `$dispatcher` will usually be a _singleton_ so that anywhere in the app listeners can be added to that single instance and dispatch event to all those listeners.
+
+_event classes_ useful when information about the event needs to be passed.
+
+Create events that corresponds to the thing that took place:
+
+1. create an event dispatcher: place it in a container, once for project.
+```php
+$listener = new SendThankYouEmail;
+```
+2. dispatch an event
+```php
+$dispatcher->dispatch(UserSignedUp::class, $event);
+```
+3. create the class:
+```php
+//...
+namespace App\Listeners;
+
+class SendThankYouEmail
+{
+    //...
+}
+```
+4. Add the listener:
+```php
+$dispatcher->addListener(UserSignedUp::class, [$listener, 'handle']);
+```
